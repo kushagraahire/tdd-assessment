@@ -33,7 +33,7 @@ public class Calculator {
         if(!negatives.isEmpty()){
             throw new IllegalArgumentException("negative numbers not allowed: " + negatives.stream().map(String :: valueOf).collect(Collectors.joining(",")));
         }
-        return nums.stream().mapToInt(Integer::intValue).sum();
+        return nums.stream().filter(n -> n <= 1000).mapToInt(Integer::intValue).sum();
     }
 
     public static int getTotalCalledCount() {

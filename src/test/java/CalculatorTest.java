@@ -56,4 +56,10 @@ public class CalculatorTest {
         calculator.add("1,2,3");
         assertEquals(1, getTotalCalledCount());
     }
+
+    @Test
+    void addNumbersGreaterThan1000AreIgnored(){
+        assertEquals(2, calculator.add("2,1001"));
+        assertEquals(1002, calculator.add("2,1000"));
+    }
 }
