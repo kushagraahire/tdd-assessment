@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator {
     public int add(String numbers){
@@ -25,7 +26,7 @@ public class Calculator {
                 .filter(n -> n < 0).toList();
 
         if(!negatives.isEmpty()){
-            throw new IllegalArgumentException("negative numbers not allowed: " + negatives.get(0));
+            throw new IllegalArgumentException("negative numbers not allowed: " + negatives.stream().map(String :: valueOf).collect(Collectors.joining(",")));
         }
         return nums.stream().mapToInt(Integer::intValue).sum();
     }
