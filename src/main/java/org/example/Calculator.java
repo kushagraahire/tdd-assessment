@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Calculator {
     public int add(String numbers){
@@ -16,6 +17,16 @@ public class Calculator {
             numbers = numbers.substring(delimiterIndex + 1);
         }
 
-        return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt).sum();
+        List<Integer> nums = Arrays.stream(numbers.split(delimiter))
+                .map(Integer::parseInt)
+                .toList();
+
+        List<Integer> negatives = nums.stream()
+                .filter(n -> n < 0).toList();
+
+        if(!negatives.isEmpty()){
+            throw new IllegalArgumentException("negative numbers not allowed: " + negatives.get(0));
+        }
+        return nums.stream().mapToInt(Integer::intValue).sum();
     }
 }
