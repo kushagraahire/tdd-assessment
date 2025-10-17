@@ -3,12 +3,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.example.Calculator.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
     private Calculator calculator;
     @BeforeEach
     void setup(){
+        resetCounter();
         calculator = new Calculator();
     }
 
@@ -47,5 +49,11 @@ public class CalculatorTest {
     void addHandleMultipleNegativeNumberThrowException(){
         Exception exception = assertThrows(IllegalArgumentException.class, () -> calculator.add("-1,-2,3"));
         assertEquals("negative numbers not allowed: -1,-2", exception.getMessage());
+    }
+
+    @Test
+    void addCounter(){
+        calculator.add("1,2,3");
+        assertEquals(1, getTotalCalledCount());
     }
 }

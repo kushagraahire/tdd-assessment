@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Calculator {
+
+    private static int totalCallCount = 0;
     public int add(String numbers){
+
+        totalCallCount++;
+
         if(numbers.isBlank()){
             return 0;
         }
@@ -29,5 +34,13 @@ public class Calculator {
             throw new IllegalArgumentException("negative numbers not allowed: " + negatives.stream().map(String :: valueOf).collect(Collectors.joining(",")));
         }
         return nums.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public static int getTotalCalledCount() {
+        return totalCallCount;
+    }
+
+    public static void resetCounter() {
+        totalCallCount = 0;
     }
 }
