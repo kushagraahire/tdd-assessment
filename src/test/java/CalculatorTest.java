@@ -32,4 +32,9 @@ public class CalculatorTest {
         assertEquals(6, calculator.add("1\n2,3"));
     }
 
+    @Test
+    void addHandleCustomDelimiter(){
+        assertEquals(3, calculator.add("//;\n1;2"));
+    }
+
 }

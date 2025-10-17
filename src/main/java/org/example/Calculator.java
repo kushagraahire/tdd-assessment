@@ -8,6 +8,14 @@ public class Calculator {
             return 0;
         }
 
-        return Arrays.stream(numbers.split("[,\n]")).mapToInt(Integer::parseInt).sum();
+        String delimiter = "[,\n]";
+
+        if (numbers.startsWith("//")) {
+            int delimiterIndex = numbers.indexOf("\n");
+            delimiter = numbers.substring(2, delimiterIndex);
+            numbers = numbers.substring(delimiterIndex + 1);
+        }
+
+        return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt).sum();
     }
 }
