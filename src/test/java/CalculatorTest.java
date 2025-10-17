@@ -21,4 +21,9 @@ public class CalculatorTest {
     void addSingleNumber(){
         assertEquals(2, calculator.add("2"));
     }
+
+    @Test
+    void addTwoNumber(){
+        assertEquals(3,calculator.add("1,2"));
+    }
 }
